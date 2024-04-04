@@ -1,17 +1,32 @@
 /* Reset default styles */
-html,
-body {
-  margin: 0;
-  padding: 0;
-}
 
 /* Global styles */
 body {
   font-family: Arial, sans-serif;
-  background-color: #852020;
-  color: #333;
+  background-color: #302b2b;
+  color: #5f748b;
 }
 /* Add your custom styles below */
-.arrow {
-  color: #852020;
+.titleCard {
+  max-width: fit-content;
+  margin-inline: auto;
+  text-align: center;
+  padding: 10px;
+}
+.highScore {
+  position: absolute;
+  top: 0;
+  margin-top: 20px;
+}
+
+.selection_Score {
+  outline-style: solid;
+  margin-left: 100px;
+}
+.line {
+  display: flex;
+  justify-content: space-between;
+}
+.APM {
+  margin-right: 160px;
 }
