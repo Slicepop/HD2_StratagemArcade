@@ -8,9 +8,10 @@ body {
 /* Global styles */
 body {
   font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
+  background-color: #852020;
   color: #333;
 }
-.titleCard {
-}
 /* Add your custom styles below */
+.arrow {
+  color: #852020;
+}
