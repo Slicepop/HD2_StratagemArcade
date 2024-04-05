@@ -20,7 +20,6 @@ body {
 }
 
 .selection_Score {
-  outline-style: solid;
   margin-left: 100px;
 }
 .line {
@@ -29,4 +28,16 @@ body {
 }
 .APM {
   margin-right: 160px;
+}
+.arrows {
+  margin-top: 50px;
+  max-width: fit-content;
+  margin-inline: auto;
+}
+.timer {
+  margin-top: 15px;
+  height: 8px;
+  background-color: yellow;
+  width: 32vw;
+  margin-inline: auto;
 }

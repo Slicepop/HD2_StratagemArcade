@@ -1,5 +1,11 @@
-addEventListener("keyup", (event) => {});
+stratagems = [
+  ["right", "right", "up"],
+  ["right", "left", "up", "down"],
+  ["down", "up", "up", "down"],
+  ["right", "left", "left", "right"],
+];
 
+addEventListener("keyup", (event) => {});
 onkeyup = (event) => {
   if (event.code === "ArrowUp" || event.code === "KeyW") {
     console.log(event.code);
