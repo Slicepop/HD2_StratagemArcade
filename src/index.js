@@ -89,6 +89,8 @@ stratagems = [
   [["up", "right", "down", "down", "down"], "Eagle 500kg Bomb"],
   [["down"], "You reached the end"], // remove this when finished
 ];
+
+textof_titleStratagem = document.getElementById("stratagem");
 image = [
   document.querySelector(".image1"),
   document.querySelector(".image2"),
@@ -106,13 +108,11 @@ addEventListener("keyup", () => {});
 
 function checkCommand(key) {
   if (key == currentStratagem[current_command]) {
-    console.log("Yo he actually did it");
     if (current_command == currentStratagem.length - 1) {
       stratagem_number++;
       image[current_command].style.filter = "sepia(0%)";
       refreshStratagems();
       image[current_command].style.filter = "sepia(100%)";
-      console.log(currentStratagem);
     } else {
       image[current_command].style.filter = "sepia(0%)";
 
@@ -145,13 +145,15 @@ onkeyup = (event) => {
 // add in list of stratagems with shuffle and loop
 // change title of stratagem
 // add in score
-// add in high score with cache
+// add in highest score with cache
 // calculate APM
 
 function refreshStratagems() {
   currentStratagem = stratagems[stratagem_number][0];
   current_command = 0;
   try {
+    textof_titleStratagem.innerHTML = stratagems[stratagem_number][1];
+
     image[0].src = "../img/" + currentStratagem[0] + ".png";
     image[1].src = "../img/" + currentStratagem[1] + ".png";
     image[2].src = "../img/" + currentStratagem[2] + ".png";
