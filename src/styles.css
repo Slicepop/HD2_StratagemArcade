@@ -34,9 +34,7 @@ body {
   max-width: fit-content;
   margin-inline: auto;
 }
-.image1 {
-  border-radius: 10ox;
-}
+
 .timer {
   margin-top: 15px;
   height: 8px;
