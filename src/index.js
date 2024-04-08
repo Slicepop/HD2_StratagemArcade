@@ -308,7 +308,7 @@ stratagems = [
   //FIXME need to loop/tell me when I have finished
 ];
 
-textof_titleStratagem = document.getElementById("stratagem");
+text_titleStratagem = document.getElementById("stratagem");
 image = [
   document.querySelector(".image1"),
   document.querySelector(".image2"),
@@ -370,23 +370,36 @@ onkeyup = (event) => {
 
 //
 
-icon1 = document.querySelector(".icon1");
-icon2 = document.querySelector(".icon2");
-icon3 = document.querySelector(".icon3");
-icon4 = document.querySelector(".icon4");
-icon5 = document.querySelector(".icon5");
+icon = [
+  document.querySelector(".icon1"),
+  document.querySelector(".icon2"),
+  document.querySelector(".icon3"),
+  document.querySelector(".icon4"),
+  document.querySelector(".icon5"),
+];
+function updateIcons(iconNum) {
+  // WIP
+  if (currentStratagem == stratagems.length - (5 - iconNum)) {
+    icon[iconNum].src = "../img/right.png";
+  }
+  icon[iconNum].src = "../" + stratagems[stratagem_number + iconNum][2];
+}
 
 function refreshStratagems() {
-  icon1.src = "../" + stratagems[stratagem_number][2];
-  icon2.src = "../" + stratagems[stratagem_number + 1][2];
-  icon3.src = "../" + stratagems[stratagem_number + 2][2];
-  icon4.src = "../" + stratagems[stratagem_number + 3][2];
-  icon5.src = "../" + stratagems[stratagem_number + 4][2];
+  if (currentStratagem == stratagems.length - 6) {
+    console.log("asdasd");
+    currentStratagem = stratagems[0];
+  }
 
   currentStratagem = stratagems[stratagem_number][0];
   current_command = 0;
+  icon[0].src = "../" + stratagems[stratagem_number][2];
+  icon[1].src = "../" + stratagems[stratagem_number + 1][2];
+  icon[2].src = "../" + stratagems[stratagem_number + 2][2];
+  icon[3].src = "../" + stratagems[stratagem_number + 3][2];
+  icon[4].src = "../" + stratagems[stratagem_number + 4][2];
   try {
-    textof_titleStratagem.innerHTML = stratagems[stratagem_number][1];
+    text_titleStratagem.innerHTML = stratagems[stratagem_number][1];
 
     image[0].src = "../img/" + currentStratagem[0] + ".png";
     image[1].src = "../img/" + currentStratagem[1] + ".png";
