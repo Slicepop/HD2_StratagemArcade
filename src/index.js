@@ -88,6 +88,7 @@ stratagems = [
   [["up", "right", "up", "left"], "Eagle 110MM Rocket Pods"],
   [["up", "right", "down", "down", "down"], "Eagle 500kg Bomb"],
   [["down"], "You reached the end"], // remove this when finished
+  //FIXME need to loop/tell me when I have finished
 ];
 
 textof_titleStratagem = document.getElementById("stratagem");
@@ -142,11 +143,15 @@ onkeyup = (event) => {
 // TODO
 // go to next element in array if reached end       ✔
 // highlight currentStratagem                       ✔
-// add in list of stratagems with shuffle and loop
-// change title of stratagem
+// add in list of stratagems                        ✔
+//     with shuffle and loop
+// change title of stratagem                        ✔
 // add in score
+// add in timer with animated rectangle
 // add in highest score with cache
 // calculate APM
+
+//
 
 function refreshStratagems() {
   currentStratagem = stratagems[stratagem_number][0];
