@@ -1,5 +1,9 @@
+@font-face {
+  font-family: FSSinclair_Bold;
+  src: url("/Fonts/FS_Sinclair_Pack/FSSinclair_Bold.otf") format("opentype");
+}
 body {
-  font-family: Arial, sans-serif;
+  font-family: "FSSinclair_Bold";
   background-color: #302b2b;
   color: #5f748b;
 }

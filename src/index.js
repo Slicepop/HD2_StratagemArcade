@@ -363,13 +363,14 @@ onkeyup = (event) => {
 // add in list of stratagems                        ✔
 //     with shuffle and loop
 // change title of stratagem                        ✔
-// add in score
+// add in score                                     ✔
 // add in timer with animated rectangle
 // add in highest score with cache
+//     winload has localstorage
 // calculate APM
 
-//
-
+totalScore = 0;
+textScore = document.querySelector(".score");
 icon = [
   document.querySelector(".icon1"),
   document.querySelector(".icon2"),
@@ -377,8 +378,9 @@ icon = [
   document.querySelector(".icon4"),
   document.querySelector(".icon5"),
 ];
+
+// WIP
 function updateIcons(iconNum) {
-  // WIP
   if (currentStratagem == stratagems.length - (5 - iconNum)) {
     icon[iconNum].src = "../img/right.png";
   }
@@ -386,11 +388,14 @@ function updateIcons(iconNum) {
 }
 
 function refreshStratagems() {
-  if (currentStratagem == stratagems.length - 6) {
-    console.log("asdasd");
-    currentStratagem = stratagems[0];
+  // if (currentStratagem == stratagems.length - 6) {
+  //   console.log("asdasd");
+  //   currentStratagem = stratagems[0];
+  // }
+  if (stratagem_number != 0) {
+    score = score + 5 * stratagems[stratagem_number - 1][0].length;
+    textScore.innerHTML = score;
   }
-
   currentStratagem = stratagems[stratagem_number][0];
   current_command = 0;
   icon[0].src = "../" + stratagems[stratagem_number][2];
@@ -412,6 +417,12 @@ function refreshStratagems() {
   } catch (e) {}
 }
 window.onload = () => {
+  // this will be used when I add a timer
+  if (localStorage.getItem("High Score") == null) {
+    localStorage.setItem("High Score", 0);
+  }
+
+  score = 0;
   image[current_command].style.filter = "sepia(100%)";
   refreshStratagems();
 };
