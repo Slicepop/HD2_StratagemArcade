@@ -1,6 +1,6 @@
 @font-face {
   font-family: FSSinclair_Bold;
-  src: url("/Fonts/FS_Sinclair_Pack/FSSinclair_Bold.otf") format("opentype");
+  src: url("/FS_Sinclair_Pack/FSSinclair_Bold.otf") format("opentype");
 }
 body {
   font-family: "FSSinclair_Bold";
