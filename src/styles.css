@@ -1,6 +1,7 @@
 @font-face {
   font-family: FSSinclair_Bold;
-  src: url("/FS_Sinclair_Pack/FSSinclair_Bold.otf") format("opentype");
+  src: url("/HD2_StratagemArcade/FS_Sinclair_Pack/FSSinclair_Bold.otf")
+    format("opentype");
 }
 body {
   font-family: "FSSinclair_Bold";
@@ -14,7 +15,7 @@ body {
   text-align: center;
   padding: 10px;
 }
-.highScore {
+.highScoreDiv {
   position: absolute;
   top: 0;
   margin-top: 20px;
@@ -45,12 +46,22 @@ body {
 
   margin-inline: auto;
 }
+.backgroundTimer {
+  margin-top: 15px;
+  height: 8px;
+  outline-style: solid;
+  outline-width: 1.8px;
+  background-color: rgb(77, 77, 76);
+  width: 32vw;
+  margin-inline: auto;
+}
 .timer {
   margin-top: 15px;
   height: 8px;
   background-color: yellow;
-  width: 32vw;
-  margin-inline: auto;
+  transition: width linear 0.2s;
+
+  max-width: 32vw;
 }
 
 .stratagemNameIcon {

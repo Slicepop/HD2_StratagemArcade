@@ -393,6 +393,10 @@ function refreshStratagems() {
   //   currentStratagem = stratagems[0];
   // }
   if (stratagem_number != 0) {
+    progress = progress + 15;
+    console.log(progress);
+    timer.style.width = (progress / 100) * 32 + "vw";
+
     score = score + 5 * stratagems[stratagem_number - 1][0].length;
     textScore.innerHTML = score;
   }
@@ -416,8 +420,27 @@ function refreshStratagems() {
     image[7].src = "../img/" + currentStratagem[7] + ".png";
   } catch (e) {}
 }
+progress = 100;
+function lowerTime() {
+  if (progress > 0) {
+    progress = progress - 1;
+    timer.style.width = (progress / 100) * 32 + "vw";
+    time = setTimeout(lowerTime, 100);
+  } else {
+    if (score > localStorage.getItem("High Score")) {
+      textHighScore.innerHTML = score;
+      localStorage.setItem("High Score", score);
+    }
+    location.reload();
+  }
+}
+textHighScore = document.querySelector(".highScore");
+timer = document.querySelector(".timer");
 window.onload = () => {
   // this will be used when I add a timer
+  textHighScore.innerHTML = localStorage.getItem("High Score");
+  time = setTimeout(lowerTime, 100);
+
   if (localStorage.getItem("High Score") == null) {
     localStorage.setItem("High Score", 0);
   }
