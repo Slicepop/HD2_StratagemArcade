@@ -58,6 +58,7 @@ body {
 .timer {
   margin-top: 15px;
   height: 8px;
+
   background-color: yellow;
   transition: width linear 0.2s;
 

@@ -300,13 +300,28 @@ stratagems = [
     "Eagle 500kg Bomb",
     "img/Helldivers-2-Stratagems-icons-svg-master/Hangar/Eagle 500KG Bomb.svg",
   ],
-  [["down"], "You reached the end", "img/down.png"], // remove this when finished
-  [["down"], "You reached the end", "img/down.png"], // remove this when finished
-  [["down"], "You reached the end", "img/down.png"], // remove this when finished
-  [["down"], "You reached the end", "img/down.png"], // remove this when finished
-  [["down"], "You reached the end", "img/down.png"], // remove this when finished
   //FIXME need to loop/tell me when I have finished
 ];
+// TODO
+// go to next element in array if reached end       ✔
+// highlight currentStratagem                       ✔
+// add in list of stratagems                        ✔
+//     with shuffle and loop
+// change title of stratagem                        ✔
+// add in score                                     ✔
+// add in timer with animated rectangle             ✔
+// add in highest score with cache                  ✔
+// add in window when timer finishes
+// calculate APM
+// adjust UI to be more palatable
+
+for (var i = stratagems.length - 1; i > 0; i--) {
+  // utilizing the Fisher-Yates shuffle
+  var j = Math.floor(Math.random() * (i + 1));
+  var temp = stratagems[i];
+  stratagems[i] = stratagems[j];
+  stratagems[j] = temp;
+}
 
 text_titleStratagem = document.getElementById("stratagem");
 image = [
@@ -333,7 +348,6 @@ function checkCommand(key) {
       image[current_command].style.filter = "sepia(100%)";
     } else {
       image[current_command].style.filter = "sepia(0%)";
-
       currentStratagem[++current_command];
       image[current_command].style.filter = "sepia(100%)";
     }
@@ -357,17 +371,6 @@ onkeyup = (event) => {
     checkCommand("left");
   }
 };
-// TODO
-// go to next element in array if reached end       ✔
-// highlight currentStratagem                       ✔
-// add in list of stratagems                        ✔
-//     with shuffle and loop
-// change title of stratagem                        ✔
-// add in score                                     ✔
-// add in timer with animated rectangle
-// add in highest score with cache
-//     winload has localstorage
-// calculate APM
 
 totalScore = 0;
 textScore = document.querySelector(".score");
@@ -434,9 +437,12 @@ function lowerTime() {
     location.reload();
   }
 }
+
 textHighScore = document.querySelector(".highScore");
 timer = document.querySelector(".timer");
 window.onload = () => {
+  console.log(stratagems);
+
   // this will be used when I add a timer
   textHighScore.innerHTML = localStorage.getItem("High Score");
   time = setTimeout(lowerTime, 100);
