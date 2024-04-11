@@ -297,16 +297,31 @@ stratagems = [
   ],
   [
     ["up", "right", "down", "down", "down"],
-    "Eagle 500kg Bomb",
+    "Eagle 500kg Bomb1",
+    "img/Helldivers-2-Stratagems-icons-svg-master/Hangar/Eagle 500KG Bomb.svg",
+  ],
+  [
+    ["up", "right", "down", "down", "down"],
+    "Eagle 500kg Bomb2",
+    "img/Helldivers-2-Stratagems-icons-svg-master/Hangar/Eagle 500KG Bomb.svg",
+  ],
+  [
+    ["up", "right", "down", "down", "down"],
+    "Eagle 500kg Bomb3",
+    "img/Helldivers-2-Stratagems-icons-svg-master/Hangar/Eagle 500KG Bomb.svg",
+  ],
+  [
+    ["up", "right", "down", "down", "down"],
+    "Eagle 500kg Bomb4",
     "img/Helldivers-2-Stratagems-icons-svg-master/Hangar/Eagle 500KG Bomb.svg",
   ],
   //FIXME need to loop/tell me when I have finished
 ];
-// TODO
+// region //TODO
 // go to next element in array if reached end       ✔
 // highlight currentStratagem                       ✔
 // add in list of stratagems                        ✔
-//     with shuffle and loop
+//     with shuffle ✔ and loop
 // change title of stratagem                        ✔
 // add in score                                     ✔
 // add in timer with animated rectangle             ✔
@@ -315,13 +330,13 @@ stratagems = [
 // calculate APM
 // adjust UI to be more palatable
 
-for (var i = stratagems.length - 1; i > 0; i--) {
-  // utilizing the Fisher-Yates shuffle
-  var j = Math.floor(Math.random() * (i + 1));
-  var temp = stratagems[i];
-  stratagems[i] = stratagems[j];
-  stratagems[j] = temp;
-}
+// for (i = stratagems.length - 1; i > 0; i--) {
+//   // utilizing the Fisher-Yates shuffle
+//   j = Math.floor(Math.random() * (i + 1));
+//   temp = stratagems[i];
+//   stratagems[i] = stratagems[j];
+//   stratagems[j] = temp;
+// }
 
 text_titleStratagem = document.getElementById("stratagem");
 image = [
@@ -338,7 +353,7 @@ stratagem_number = 0;
 currentStratagem = stratagems[stratagem_number][0];
 current_command = 0;
 addEventListener("keyup", () => {});
-
+//region checkInput
 function checkCommand(key) {
   if (key == currentStratagem[current_command]) {
     if (current_command == currentStratagem.length - 1) {
@@ -382,21 +397,23 @@ icon = [
   document.querySelector(".icon5"),
 ];
 
-// WIP
+// region updateIcons
 function updateIcons(iconNum) {
-  if (currentStratagem == stratagems.length - (5 - iconNum)) {
-    icon[iconNum].src = "../img/right.png";
+  // if (currentStratagem == stratagems.length - (5 - iconNum)) {
+  //   icon[iconNum].src = "../img/right.png";
+  // }
+  // icon[1].src = "../" + stratagems[stratagem_number + 1][2];
+  if (stratagems[stratagem_number] == stratagems[stratagems.length - 4]) {
+    console.log("asd");
   }
   icon[iconNum].src = "../" + stratagems[stratagem_number + iconNum][2];
 }
 
+// region refreshStratagems
 function refreshStratagems() {
-  // if (currentStratagem == stratagems.length - 6) {
-  //   console.log("asdasd");
-  //   currentStratagem = stratagems[0];
-  // }
   if (stratagem_number != 0) {
-    progress = progress + 15;
+    progress = progress + stratagems[stratagem_number - 1][0].length * 2.5;
+    console.log(8 + stratagems[stratagem_number - 1][0].length * 1.5);
     console.log(progress);
     timer.style.width = (progress / 100) * 32 + "vw";
 
@@ -405,11 +422,9 @@ function refreshStratagems() {
   }
   currentStratagem = stratagems[stratagem_number][0];
   current_command = 0;
-  icon[0].src = "../" + stratagems[stratagem_number][2];
-  icon[1].src = "../" + stratagems[stratagem_number + 1][2];
-  icon[2].src = "../" + stratagems[stratagem_number + 2][2];
-  icon[3].src = "../" + stratagems[stratagem_number + 3][2];
-  icon[4].src = "../" + stratagems[stratagem_number + 4][2];
+  for (i = 0; i < 5; i++) {
+    updateIcons(i);
+  }
   try {
     text_titleStratagem.innerHTML = stratagems[stratagem_number][1];
 
@@ -438,6 +453,7 @@ function lowerTime() {
   }
 }
 
+// region winload
 textHighScore = document.querySelector(".highScore");
 timer = document.querySelector(".timer");
 window.onload = () => {

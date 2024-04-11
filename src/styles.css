@@ -1,7 +1,6 @@
 @font-face {
   font-family: FSSinclair_Bold;
-  src: url("/HD2_StratagemArcade/FS_Sinclair_Pack/FSSinclair_Bold.otf")
-    format("opentype");
+  src: url("./Fonts/FS_Sinclair_Pack/FSSinclair_Bold.otf") format("opentype");
 }
 body {
   font-family: "FSSinclair_Bold";
