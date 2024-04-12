@@ -297,24 +297,10 @@ stratagems = [
   ],
   [
     ["up", "right", "down", "down", "down"],
-    "Eagle 500kg Bomb1",
+    "Eagle 500kg Bomb",
     "img/Helldivers-2-Stratagems-icons-svg-master/Hangar/Eagle 500KG Bomb.svg",
   ],
-  [
-    ["up", "right", "down", "down", "down"],
-    "Eagle 500kg Bomb2",
-    "img/Helldivers-2-Stratagems-icons-svg-master/Hangar/Eagle 500KG Bomb.svg",
-  ],
-  [
-    ["up", "right", "down", "down", "down"],
-    "Eagle 500kg Bomb3",
-    "img/Helldivers-2-Stratagems-icons-svg-master/Hangar/Eagle 500KG Bomb.svg",
-  ],
-  [
-    ["up", "right", "down", "down", "down"],
-    "Eagle 500kg Bomb4",
-    "img/Helldivers-2-Stratagems-icons-svg-master/Hangar/Eagle 500KG Bomb.svg",
-  ],
+
   //FIXME need to loop/tell me when I have finished
 ];
 // region //TODO
@@ -329,14 +315,13 @@ stratagems = [
 // add in window when timer finishes
 // calculate APM
 // adjust UI to be more palatable
-
-// for (i = stratagems.length - 1; i > 0; i--) {
-//   // utilizing the Fisher-Yates shuffle
-//   j = Math.floor(Math.random() * (i + 1));
-//   temp = stratagems[i];
-//   stratagems[i] = stratagems[j];
-//   stratagems[j] = temp;
-// }
+for (i = stratagems.length - 1; i > 0; i--) {
+  // utilizing the Fisher-Yates shuffle
+  j = Math.floor(Math.random() * (i + 1));
+  temp = stratagems[i];
+  stratagems[i] = stratagems[j];
+  stratagems[j] = temp;
+}
 
 text_titleStratagem = document.getElementById("stratagem");
 image = [
@@ -352,10 +337,12 @@ image = [
 stratagem_number = 0;
 currentStratagem = stratagems[stratagem_number][0];
 current_command = 0;
-addEventListener("keyup", () => {});
-//region checkInput
+//region checkCommand
 function checkCommand(key) {
+  //if you inputted the correct key
   if (key == currentStratagem[current_command]) {
+    // actions++;
+    // If you reached the end of current stratagem go to next stratagem
     if (current_command == currentStratagem.length - 1) {
       stratagem_number++;
       image[current_command].style.filter = "sepia(0%)";
@@ -369,6 +356,7 @@ function checkCommand(key) {
     if (current_command != 0) {
     }
   } else {
+    //if you inputed the wrong key go back to beginning
     image[current_command].style.filter = "sepia(0%)";
     current_command = 0;
     image[current_command].style.filter = "sepia(100%)";
@@ -399,10 +387,6 @@ icon = [
 
 // region updateIcons
 function updateIcons(iconNum) {
-  // if (currentStratagem == stratagems.length - (5 - iconNum)) {
-  //   icon[iconNum].src = "../img/right.png";
-  // }
-  // icon[1].src = "../" + stratagems[stratagem_number + 1][2];
   if (stratagems[stratagem_number] == stratagems[stratagems.length - 4]) {
     console.log("asd");
   }
@@ -411,6 +395,8 @@ function updateIcons(iconNum) {
 
 // region refreshStratagems
 function refreshStratagems() {
+  //textAPM.innerHTML = "APM: " + apm.toString();
+
   if (stratagem_number != 0) {
     progress = progress + stratagems[stratagem_number - 1][0].length * 2.5;
     console.log(8 + stratagems[stratagem_number - 1][0].length * 1.5);
@@ -438,6 +424,22 @@ function refreshStratagems() {
     image[7].src = "../img/" + currentStratagem[7] + ".png";
   } catch (e) {}
 }
+
+// apm = localStorage.getItem("APM");
+// actions = 0;
+
+// function calculateAPM() {
+//   timeSpan = endTime - startTime;
+
+//   apm = actions * ((60 / timeSpan) * 1000);
+
+//   // calculate amount of time since last call
+
+//   startTime = Date.now();
+// }
+
+// textAPM = document.querySelector(".APM");
+
 progress = 100;
 function lowerTime() {
   if (progress > 0) {
@@ -449,6 +451,9 @@ function lowerTime() {
       textHighScore.innerHTML = score;
       localStorage.setItem("High Score", score);
     }
+    endTime = Date.now();
+    // calculateAPM();
+    // localStorage.setItem("APM", apm);
     location.reload();
   }
 }
@@ -457,7 +462,7 @@ function lowerTime() {
 textHighScore = document.querySelector(".highScore");
 timer = document.querySelector(".timer");
 window.onload = () => {
-  console.log(stratagems);
+  startTime = Date.now();
 
   // this will be used when I add a timer
   textHighScore.innerHTML = localStorage.getItem("High Score");
@@ -466,6 +471,10 @@ window.onload = () => {
   if (localStorage.getItem("High Score") == null) {
     localStorage.setItem("High Score", 0);
   }
+  // if (localStorage.getItem("APM") == null) {
+  //   localStorage.setItem("APM", 0);
+  // }
+  // textAPM.innerHTML = localStorage.getItem("APM");
 
   score = 0;
   image[current_command].style.filter = "sepia(100%)";
