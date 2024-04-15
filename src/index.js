@@ -303,6 +303,7 @@ stratagems = [
 
   //FIXME need to loop/tell me when I have finished
 ];
+
 // region //TODO
 // go to next element in array if reached end       ✔
 // highlight currentStratagem                       ✔
@@ -315,6 +316,7 @@ stratagems = [
 // add in window when timer finishes
 // calculate APM
 // adjust UI to be more palatable
+gameRunning = true;
 for (i = stratagems.length - 1; i > 0; i--) {
   // utilizing the Fisher-Yates shuffle
   j = Math.floor(Math.random() * (i + 1));
@@ -356,7 +358,7 @@ function checkCommand(key) {
     if (current_command != 0) {
     }
   } else {
-    //if you inputed the wrong key go back to beginning
+    //if you inputted the wrong key go back to beginning
     image[current_command].style.filter = "sepia(0%)";
     current_command = 0;
     image[current_command].style.filter = "sepia(100%)";
@@ -364,14 +366,16 @@ function checkCommand(key) {
 }
 
 onkeyup = (event) => {
-  if (event.code === "ArrowUp" || event.code === "KeyW") {
-    checkCommand("up");
-  } else if (event.code === "ArrowRight" || event.code === "KeyD") {
-    checkCommand("right");
-  } else if (event.code === "ArrowDown" || event.code === "KeyS") {
-    checkCommand("down");
-  } else if (event.code === "ArrowLeft" || event.code === "KeyA") {
-    checkCommand("left");
+  if (gameRunning == true) {
+    if (event.code === "ArrowUp" || event.code === "KeyW") {
+      checkCommand("up");
+    } else if (event.code === "ArrowRight" || event.code === "KeyD") {
+      checkCommand("right");
+    } else if (event.code === "ArrowDown" || event.code === "KeyS") {
+      checkCommand("down");
+    } else if (event.code === "ArrowLeft" || event.code === "KeyA") {
+      checkCommand("left");
+    }
   }
 };
 
@@ -454,10 +458,11 @@ function lowerTime() {
     endTime = Date.now();
     // calculateAPM();
     // localStorage.setItem("APM", apm);
-    location.reload();
+    menu.style.display = "flex";
+    gameRunning = false;
   }
 }
-
+menu = document.querySelector(".menu");
 // region winload
 textHighScore = document.querySelector(".highScore");
 timer = document.querySelector(".timer");
@@ -480,3 +485,6 @@ window.onload = () => {
   image[current_command].style.filter = "sepia(100%)";
   refreshStratagems();
 };
+function restartClick() {
+  location.reload();
+}

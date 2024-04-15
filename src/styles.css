@@ -14,11 +14,6 @@ body {
   text-align: center;
   padding: 10px;
 }
-.highScoreDiv {
-  position: absolute;
-  top: 0;
-  margin-top: 20px;
-}
 
 .selection_Score {
   margin-left: 100px;
@@ -123,4 +118,36 @@ body {
   max-width: fit-content;
 
   color: rgb(252, 252, 0);
+}
+.menu {
+  background-color: #302b2b;
+  color: yellow;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  outline-style: solid;
+  outline-width: 2px;
+  border-radius: 5px;
+  padding: 25px;
+  width: 300px;
+  height: fit-content;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+}
+.restart {
+  cursor: pointer;
+  outline-style: solid;
+  padding: 5px;
+  border-radius: 3px;
+}
+.apmBox {
+  display: flex;
+}
+.textAPM {
+  margin-left: 5px;
+  color: yellow;
 }

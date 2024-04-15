@@ -7,10 +7,7 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="highScoreDiv">
-      <h2 class="highScore"></h2>
-      <h3>High Score</h3>
-    </div>
+    
     <div class="titleCard">
       <h1>Helldivers 2</h1>
       <h2>Stratagem Arcade</h2>
@@ -18,10 +15,11 @@
     <div class="game">
       <div class="selection_Score">
         <div class="line">
-            <h2 class="APM">APM: </h2>
         </div>
         <h2 class="score">0</h2>
         <h3>SCORE</h3>
+        <h2 class="highScore"></h2>
+      <h3>High Score</h3>
       </div>
       <div class="stratagemNameIcon">
         <div class="iconCarousel">
@@ -48,6 +46,19 @@
         <div class="timer"/>
       </div>
     </div>
+    <div class="menu">
+      <h2>TIMES UP!</h2>
+      
+      <div class="apmBox">
+        <h3></h3>
+        <h3 class="textAPM">APM</h4>
+      </div>
+
+      <a class="restart"  onclick="restartClick()">RESTART</a>
+  
+    </div>
+
+
     <script src="index.js"></script>
   </body>
 </html>
