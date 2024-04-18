@@ -316,7 +316,8 @@ stratagems = [
 // add in window when timer finishes
 // calculate APM
 // adjust UI to be more palatable
-gameRunning = true;
+gameRunning = false;
+
 for (i = stratagems.length - 1; i > 0; i--) {
   // utilizing the Fisher-Yates shuffle
   j = Math.floor(Math.random() * (i + 1));
@@ -343,7 +344,7 @@ current_command = 0;
 function checkCommand(key) {
   //if you inputted the correct key
   if (key == currentStratagem[current_command]) {
-    // actions++;
+    actions++;
     // If you reached the end of current stratagem go to next stratagem
     if (current_command == currentStratagem.length - 1) {
       stratagem_number++;
@@ -392,19 +393,14 @@ icon = [
 // region updateIcons
 function updateIcons(iconNum) {
   if (stratagems[stratagem_number] == stratagems[stratagems.length - 4]) {
-    console.log("asd");
   }
   icon[iconNum].src = "../" + stratagems[stratagem_number + iconNum][2];
 }
 
 // region refreshStratagems
 function refreshStratagems() {
-  //textAPM.innerHTML = "APM: " + apm.toString();
-
   if (stratagem_number != 0) {
     progress = progress + stratagems[stratagem_number - 1][0].length * 2.5;
-    console.log(8 + stratagems[stratagem_number - 1][0].length * 1.5);
-    console.log(progress);
     timer.style.width = (progress / 100) * 32 + "vw";
 
     score = score + 5 * stratagems[stratagem_number - 1][0].length;
@@ -429,47 +425,52 @@ function refreshStratagems() {
   } catch (e) {}
 }
 
-// apm = localStorage.getItem("APM");
-// actions = 0;
+actions = 0;
 
-// function calculateAPM() {
-//   timeSpan = endTime - startTime;
+function calculateAPM() {
+  timeSpan = endTime - startTime;
 
-//   apm = actions * ((60 / timeSpan) * 1000);
+  apm = actions * ((60 / timeSpan) * 1000);
 
-//   // calculate amount of time since last call
+  // calculate amount of time since last call
 
-//   startTime = Date.now();
-// }
+  startTime = Date.now();
+}
 
-// textAPM = document.querySelector(".APM");
+textAPM = document.querySelector(".APM");
 
 progress = 100;
 function lowerTime() {
-  if (progress > 0) {
-    progress = progress - 1;
-    timer.style.width = (progress / 100) * 32 + "vw";
-    time = setTimeout(lowerTime, 100);
-  } else {
-    if (score > localStorage.getItem("High Score")) {
-      textHighScore.innerHTML = score;
-      localStorage.setItem("High Score", score);
+  if (gameRunning) {
+    if (progress > 0) {
+      progress = progress - 1;
+      timer.style.width = (progress / 100) * 32 + "vw";
+      time = setTimeout(lowerTime, 100);
+    } else {
+      if (score > localStorage.getItem("High Score")) {
+        textHighScore.innerHTML = score;
+        localStorage.setItem("High Score", score);
+      }
+      endTime = Date.now();
+      calculateAPM();
+      // localStorage.setItem("APM", apm);
+      menu.style.display = "flex";
+      textAPM.innerHTML = Math.round(apm).toString().trim();
+      gameRunning = false;
     }
-    endTime = Date.now();
-    // calculateAPM();
-    // localStorage.setItem("APM", apm);
-    menu.style.display = "flex";
-    gameRunning = false;
   }
+}
+function start() {
+  gameRunning = true;
 }
 menu = document.querySelector(".menu");
 // region winload
 textHighScore = document.querySelector(".highScore");
 timer = document.querySelector(".timer");
 window.onload = () => {
+  setTimeout(start(), 3000);
   startTime = Date.now();
 
-  // this will be used when I add a timer
   textHighScore.innerHTML = localStorage.getItem("High Score");
   time = setTimeout(lowerTime, 100);
 
@@ -479,7 +480,6 @@ window.onload = () => {
   // if (localStorage.getItem("APM") == null) {
   //   localStorage.setItem("APM", 0);
   // }
-  // textAPM.innerHTML = localStorage.getItem("APM");
 
   score = 0;
   image[current_command].style.filter = "sepia(100%)";

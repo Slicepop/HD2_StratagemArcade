@@ -14,7 +14,13 @@ body {
   text-align: center;
   padding: 10px;
 }
+.titleCard h1 {
+  color: yellow;
+}
 
+.score {
+  color: yellow;
+}
 .selection_Score {
   margin-left: 100px;
 }
@@ -22,10 +28,9 @@ body {
   display: flex;
   justify-content: space-between;
 }
-.APM {
-  margin-right: 160px;
+.highScore {
+  color: yellow;
 }
-
 .icon1 {
   height: 100px;
   margin-right: 30px;
@@ -147,7 +152,9 @@ body {
 .apmBox {
   display: flex;
 }
+.APM {
+  margin-right: 9px;
+}
 .textAPM {
-  margin-left: 5px;
   color: yellow;
 }
