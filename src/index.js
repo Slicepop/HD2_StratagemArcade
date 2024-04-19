@@ -460,15 +460,29 @@ function lowerTime() {
     }
   }
 }
+startDelay = document.querySelector(".startDelay");
+p = 1;
 function start() {
-  gameRunning = true;
+  p++;
+
+  if (p == 4) {
+    gameRunning = true;
+    lowerTime();
+    startDelay.innerHTML = "GO!";
+    setTimeout(start, 1000);
+  } else if (p == 5) {
+    startDelay.style.display = "none";
+  } else {
+    setTimeout(start, 1000);
+    startDelay.innerHTML = p;
+  }
 }
 menu = document.querySelector(".menu");
 // region winload
 textHighScore = document.querySelector(".highScore");
 timer = document.querySelector(".timer");
 window.onload = () => {
-  setTimeout(start(), 3000);
+  setTimeout(start, 1000);
   startTime = Date.now();
 
   textHighScore.innerHTML = localStorage.getItem("High Score");

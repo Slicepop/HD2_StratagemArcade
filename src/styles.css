@@ -158,3 +158,13 @@ body {
 .textAPM {
   color: yellow;
 }
+.startDelay {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: yellow;
+  font-size: 80px;
+  z-index: 2;
+  font-weight: 900;
+}
