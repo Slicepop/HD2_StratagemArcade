@@ -340,6 +340,11 @@ image = [
 stratagem_number = 0;
 currentStratagem = stratagems[stratagem_number][0];
 current_command = 0;
+
+normalInputSound = new Audio("/audio/inputCommand.mp3");
+lastInputSound = new Audio("/audio/inputLastCommand.mp3");
+
+soundOn = true;
 //region checkCommand
 function checkCommand(key) {
   //if you inputted the correct key
@@ -347,12 +352,18 @@ function checkCommand(key) {
     actions++;
     // If you reached the end of current stratagem go to next stratagem
     if (current_command == currentStratagem.length - 1) {
+      if (soundOn) {
+        lastInputSound.play();
+      }
       stratagem_number++;
       image[current_command].style.filter = "sepia(0%)";
       refreshStratagems();
       image[current_command].style.filter = "sepia(100%)";
     } else {
       image[current_command].style.filter = "sepia(0%)";
+      if (soundOn) {
+        normalInputSound.play();
+      }
       currentStratagem[++current_command];
       image[current_command].style.filter = "sepia(100%)";
     }
@@ -376,6 +387,14 @@ onkeyup = (event) => {
       checkCommand("down");
     } else if (event.code === "ArrowLeft" || event.code === "KeyA") {
       checkCommand("left");
+    }
+  } else if (
+    event.code === "Enter" ||
+    event.code === "Space" ||
+    event.code === "NumpadEnter"
+  ) {
+    if (gameEnd) {
+      restartClick();
     }
   }
 };
@@ -438,7 +457,6 @@ function calculateAPM() {
 }
 
 textAPM = document.querySelector(".APM");
-
 progress = 100;
 function lowerTime() {
   if (gameRunning) {
@@ -456,6 +474,7 @@ function lowerTime() {
       // localStorage.setItem("APM", apm);
       menu.style.display = "flex";
       textAPM.innerHTML = Math.round(apm).toString().trim();
+      gameEnd = true;
       gameRunning = false;
     }
   }
@@ -477,6 +496,7 @@ function start() {
     startDelay.innerHTML = p;
   }
 }
+
 menu = document.querySelector(".menu");
 // region winload
 textHighScore = document.querySelector(".highScore");
