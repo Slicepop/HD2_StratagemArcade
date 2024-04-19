@@ -308,14 +308,14 @@ stratagems = [
 // go to next element in array if reached end       ✔
 // highlight currentStratagem                       ✔
 // add in list of stratagems                        ✔
-//     with shuffle ✔ and loop
+//     with shuffle ✔ and loop x
 // change title of stratagem                        ✔
 // add in score                                     ✔
 // add in timer with animated rectangle             ✔
 // add in highest score with cache                  ✔
-// add in window when timer finishes
-// calculate APM
-// adjust UI to be more palatable
+// add in window when timer finishes                ✔
+// calculate APM                                    ✔
+// adjust UI to be more palatable                   ✔
 gameRunning = false;
 
 for (i = stratagems.length - 1; i > 0; i--) {
@@ -341,8 +341,8 @@ stratagem_number = 0;
 currentStratagem = stratagems[stratagem_number][0];
 current_command = 0;
 
-normalInputSound = new Audio("/audio/inputCommand.mp3");
-lastInputSound = new Audio("/audio/inputLastCommand.mp3");
+normalInputSound = new Audio("./audio/inputCommand.mp3");
+lastInputSound = new Audio("./audio/inputLastCommand.mp3");
 
 soundOn = true;
 //region checkCommand
