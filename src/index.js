@@ -344,19 +344,20 @@ current_command = 0;
 normalInputSound = new Audio("./audio/inputCommand.mp3");
 lastInputSound = new Audio("./audio/inputLastCommand.mp3");
 
-iconMute = document.querySelector(".soundOff");
-iconSound = document.querySelector(".soundOn");
+iconMute = document.querySelector(".imageSoundOff");
+iconSound = document.querySelector(".imageSoundOn");
 
-soundOn = localStorage.getItem("Sound?");
 function toggleSound() {
-  localStorage.setItem("Sound?", !soundOn);
-  soundOn = !soundOn;
-  if (soundOn) {
-    iconMute.style.display = "none";
-    iconSound.style.display = "block";
-  } else {
+  if (soundOn == "true") {
+    localStorage.setItem("Sound?", "false");
+    soundOn = "false";
     iconMute.style.display = "block";
     iconSound.style.display = "none";
+  } else if (soundOn == "false") {
+    localStorage.setItem("Sound?", "true");
+    soundOn = "true";
+    iconMute.style.display = "none";
+    iconSound.style.display = "block";
   }
 }
 
@@ -367,7 +368,7 @@ function checkCommand(key) {
     actions++;
     // If you reached the end of current stratagem go to next stratagem
     if (current_command == currentStratagem.length - 1) {
-      if (soundOn) {
+      if (soundOn == "true") {
         lastInputSound.play();
       }
       stratagem_number++;
@@ -376,7 +377,7 @@ function checkCommand(key) {
       image[current_command].style.filter = "sepia(100%)";
     } else {
       image[current_command].style.filter = "sepia(0%)";
-      if (soundOn) {
+      if (soundOn == "true") {
         normalInputSound.play();
       }
       currentStratagem[++current_command];
@@ -519,19 +520,20 @@ timer = document.querySelector(".timer");
 window.onload = () => {
   setTimeout(start, 1000);
   startTime = Date.now();
-  soundOn = localStorage.getItem("Sound?");
-  if (soundOn) {
-    iconMute.style.display = "none";
-    iconSound.style.display = "block";
+  if (localStorage.getItem("Sound?") == null) {
+    localStorage.setItem("Sound?", true);
+    soundOn = true;
+    console.log("asdasd");
   } else {
+    soundOn = localStorage.getItem("Sound?");
+  }
+  if (soundOn == "true") {
+    iconSound.style.display = "block";
+  } else if (soundOn == "false") {
     iconMute.style.display = "block";
-    iconSound.style.display = "none";
   }
   if (localStorage.getItem("High Score") == null) {
     localStorage.setItem("High Score", 0);
-  }
-  if (localStorage.getItem("Sound?") == null) {
-    localStorage.setItem("Sound?", true);
   }
   textHighScore.innerHTML = localStorage.getItem("High Score");
   time = setTimeout(lowerTime, 100);
