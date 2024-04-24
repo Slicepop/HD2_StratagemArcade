@@ -519,6 +519,7 @@ timer = document.querySelector(".timer");
 window.onload = () => {
   setTimeout(start, 1000);
   startTime = Date.now();
+  soundOn = localStorage.getItem("Sound?");
   if (soundOn) {
     iconMute.style.display = "none";
     iconSound.style.display = "block";
