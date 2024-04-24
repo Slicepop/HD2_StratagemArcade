@@ -344,7 +344,22 @@ current_command = 0;
 normalInputSound = new Audio("./audio/inputCommand.mp3");
 lastInputSound = new Audio("./audio/inputLastCommand.mp3");
 
-soundOn = true;
+iconMute = document.querySelector(".soundOff");
+iconSound = document.querySelector(".soundOn");
+
+soundOn = localStorage.getItem("Sound?");
+function toggleSound() {
+  localStorage.setItem("Sound?", !soundOn);
+  soundOn = !soundOn;
+  if (soundOn) {
+    iconMute.style.display = "none";
+    iconSound.style.display = "block";
+  } else {
+    iconMute.style.display = "block";
+    iconSound.style.display = "none";
+  }
+}
+
 //region checkCommand
 function checkCommand(key) {
   //if you inputted the correct key
@@ -504,13 +519,22 @@ timer = document.querySelector(".timer");
 window.onload = () => {
   setTimeout(start, 1000);
   startTime = Date.now();
-
-  textHighScore.innerHTML = localStorage.getItem("High Score");
-  time = setTimeout(lowerTime, 100);
-
+  if (soundOn) {
+    iconMute.style.display = "none";
+    iconSound.style.display = "block";
+  } else {
+    iconMute.style.display = "block";
+    iconSound.style.display = "none";
+  }
   if (localStorage.getItem("High Score") == null) {
     localStorage.setItem("High Score", 0);
   }
+  if (localStorage.getItem("Sound?") == null) {
+    localStorage.setItem("Sound?", true);
+  }
+  textHighScore.innerHTML = localStorage.getItem("High Score");
+  time = setTimeout(lowerTime, 100);
+
   // if (localStorage.getItem("APM") == null) {
   //   localStorage.setItem("APM", 0);
   // }
@@ -519,6 +543,7 @@ window.onload = () => {
   image[current_command].style.filter = "sepia(100%)";
   refreshStratagems();
 };
+
 function restartClick() {
   location.reload();
 }

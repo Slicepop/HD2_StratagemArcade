@@ -168,3 +168,17 @@ body {
   z-index: 2;
   font-weight: 900;
 }
+.soundIcons {
+  position: absolute;
+  bottom: 15%;
+  right: 10%;
+  cursor: pointer;
+}
+
+.soundIcons img {
+  position: absolute;
+  filter: invert(100%);
+  opacity: 0.5;
+  width: 75px;
+  height: 75px;
+}
