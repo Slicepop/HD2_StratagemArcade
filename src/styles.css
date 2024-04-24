@@ -176,7 +176,7 @@ body {
 }
 
 .soundIcons img {
-  position: absolute;
+  position: inherit;
   filter: invert(100%);
   opacity: 0.5;
   width: 75px;
